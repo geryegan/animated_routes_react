@@ -24,6 +24,7 @@ export default class App extends Component {
 			})
 			.then(json => {
 				this.setState({
+					//creating the projects piece of state that is passed in as props to both Projects and ProjectItem
 					projects: json.slice(0, 7)
 				});
 			});
