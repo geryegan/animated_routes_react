@@ -21,19 +21,26 @@ export default class ProjectItem extends Component {
 	}
 	_renderProject(projects) {
 		let project = projects.filter(p => {
+			//id from router 
 			return (p.id = this.props.match.params.id);
 		});
+		//if there exists a project with the matching id, setstate with project info
 		if (project.length) {
 			this.setState({ project: project[0] });
+			//then, animate
 			setTimeout(
+				//callback
 				() =>
 					Animated.spring(this.state.animate, { toValue: 1 }).start(),
+				//milliseconds
 				375
 			);
 		}
 	}
 	render() {
+		//destructure title and body off of state
 		const { project: { title, body } } = this.state;
+		//back button animation
 		const goBackStyle = {
 			transform: Animated.template`
 				translate3d(${this.state.animate.interpolate({
